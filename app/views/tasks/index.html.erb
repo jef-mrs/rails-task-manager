@@ -1,8 +1,36 @@
-<h1>My Tasks</h1>
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= task.completed %> <%= link_to task.title, task_path(task) %></li>
-  <% end %>
-</ul>
+<div class="container">
+    <h1>My Tasks</h1>
+  <div class="row">
+  <div class="col-sm-6">
+    <ul style="width: 300px">
+      <% @tasks.each do |task| %>
+        <% if task.completed %>
+          <li > <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <%= link_to task.title, task_path(task) %> .
+              <%= link_to task_path(task),
+                                method: :delete,
+                                data: { confirm: "Are you sure?" },
+                                 class: "btn btn-warning"  do %>
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <% end %>
+          </li>
+        <% else %>
+          <li> <i class="fa fa-square-o" aria-hidden="true"></i>
+               <%= link_to task.title, task_path(task) %> .
+                 <%= link_to task_path(task),
+                                method: :delete,
+                                data: { confirm: "Are you sure?" },
+                                class: "btn btn-warning" do %>
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                 <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
 
-<%= link_to 'Add new tasks', new_task_path  %>
+    <%= link_to new_task_path, class: "btn btn-primary" do %>
+    <i class="fa fa-plus" aria-hidden="true"> Add a new task</i>
+    <% end %>
+  </div>
+  </div>
+</div>

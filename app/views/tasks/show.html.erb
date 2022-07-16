@@ -1,8 +1,17 @@
+<div class="container">
+<div class="col-sm-6">
 <h2><%= @task.title %></h2>
 <p><%= @task.details %></p>
-<p><%= @task.completed %></p>
+<% if @task.completed %>
+  <p>task is completed</p>
+<% else %>
+  <p>task is not completed</p>
+<% end %>
 <%= link_to "Delete #{@task.title}", task_path(@task),
             method: :delete,
-            data: { confirm: "Are you sure?" }  %>
-<%= link_to 'Edit task', edit_task_path %>
-<%= link_to 'Back to tasks', tasks_path %>
+            data: { confirm: "Are you sure?" },
+            class: 'btn btn-warning' %>
+<%= link_to 'Edit task', edit_task_path, class: 'btn btn-primary' %>
+<%= link_to 'Back to tasks', tasks_path, class: 'btn btn-primary' %>
+</div>
+</div>
